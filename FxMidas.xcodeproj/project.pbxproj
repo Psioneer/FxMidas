@@ -1,0 +1,545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3B27CF911DD9DC27008EA448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CF901DD9DC27008EA448 /* AppDelegate.swift */; };
+		3B27CF931DD9DC27008EA448 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CF921DD9DC27008EA448 /* ViewController.swift */; };
+		3B27CF961DD9DC27008EA448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B27CF941DD9DC27008EA448 /* Main.storyboard */; };
+		3B27CF991DD9DC27008EA448 /* FxMidas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CF971DD9DC27008EA448 /* FxMidas.xcdatamodeld */; };
+		3B27CF9B1DD9DC27008EA448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B27CF9A1DD9DC27008EA448 /* Assets.xcassets */; };
+		3B27CF9E1DD9DC27008EA448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B27CF9C1DD9DC27008EA448 /* LaunchScreen.storyboard */; };
+		3B27CFA91DD9DC27008EA448 /* FxMidasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CFA81DD9DC27008EA448 /* FxMidasTests.swift */; };
+		3B27CFB41DD9DC27008EA448 /* FxMidasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CFB31DD9DC27008EA448 /* FxMidasUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3B27CFA51DD9DC27008EA448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B27CF851DD9DC27008EA448 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B27CF8C1DD9DC27008EA448;
+			remoteInfo = FxMidas;
+		};
+		3B27CFB01DD9DC27008EA448 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B27CF851DD9DC27008EA448 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B27CF8C1DD9DC27008EA448;
+			remoteInfo = FxMidas;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3B27CF8D1DD9DC27008EA448 /* FxMidas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FxMidas.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B27CF901DD9DC27008EA448 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3B27CF921DD9DC27008EA448 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3B27CF951DD9DC27008EA448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3B27CF981DD9DC27008EA448 /* FxMidas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FxMidas.xcdatamodel; sourceTree = "<group>"; };
+		3B27CF9A1DD9DC27008EA448 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B27CF9D1DD9DC27008EA448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3B27CF9F1DD9DC27008EA448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B27CFA41DD9DC27008EA448 /* FxMidasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FxMidasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B27CFA81DD9DC27008EA448 /* FxMidasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FxMidasTests.swift; sourceTree = "<group>"; };
+		3B27CFAA1DD9DC27008EA448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B27CFAF1DD9DC27008EA448 /* FxMidasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FxMidasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B27CFB31DD9DC27008EA448 /* FxMidasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FxMidasUITests.swift; sourceTree = "<group>"; };
+		3B27CFB51DD9DC27008EA448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B27CF8A1DD9DC27008EA448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B27CFA11DD9DC27008EA448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B27CFAC1DD9DC27008EA448 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B27CF841DD9DC27008EA448 = {
+			isa = PBXGroup;
+			children = (
+				3B27CF8F1DD9DC27008EA448 /* FxMidas */,
+				3B27CFA71DD9DC27008EA448 /* FxMidasTests */,
+				3B27CFB21DD9DC27008EA448 /* FxMidasUITests */,
+				3B27CF8E1DD9DC27008EA448 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B27CF8E1DD9DC27008EA448 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B27CF8D1DD9DC27008EA448 /* FxMidas.app */,
+				3B27CFA41DD9DC27008EA448 /* FxMidasTests.xctest */,
+				3B27CFAF1DD9DC27008EA448 /* FxMidasUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B27CF8F1DD9DC27008EA448 /* FxMidas */ = {
+			isa = PBXGroup;
+			children = (
+				3B27CF901DD9DC27008EA448 /* AppDelegate.swift */,
+				3B27CF921DD9DC27008EA448 /* ViewController.swift */,
+				3B27CF941DD9DC27008EA448 /* Main.storyboard */,
+				3B27CF9A1DD9DC27008EA448 /* Assets.xcassets */,
+				3B27CF9C1DD9DC27008EA448 /* LaunchScreen.storyboard */,
+				3B27CF9F1DD9DC27008EA448 /* Info.plist */,
+				3B27CF971DD9DC27008EA448 /* FxMidas.xcdatamodeld */,
+			);
+			path = FxMidas;
+			sourceTree = "<group>";
+		};
+		3B27CFA71DD9DC27008EA448 /* FxMidasTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B27CFA81DD9DC27008EA448 /* FxMidasTests.swift */,
+				3B27CFAA1DD9DC27008EA448 /* Info.plist */,
+			);
+			path = FxMidasTests;
+			sourceTree = "<group>";
+		};
+		3B27CFB21DD9DC27008EA448 /* FxMidasUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3B27CFB31DD9DC27008EA448 /* FxMidasUITests.swift */,
+				3B27CFB51DD9DC27008EA448 /* Info.plist */,
+			);
+			path = FxMidasUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B27CF8C1DD9DC27008EA448 /* FxMidas */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B27CFB81DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidas" */;
+			buildPhases = (
+				3B27CF891DD9DC27008EA448 /* Sources */,
+				3B27CF8A1DD9DC27008EA448 /* Frameworks */,
+				3B27CF8B1DD9DC27008EA448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FxMidas;
+			productName = FxMidas;
+			productReference = 3B27CF8D1DD9DC27008EA448 /* FxMidas.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3B27CFA31DD9DC27008EA448 /* FxMidasTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B27CFBB1DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidasTests" */;
+			buildPhases = (
+				3B27CFA01DD9DC27008EA448 /* Sources */,
+				3B27CFA11DD9DC27008EA448 /* Frameworks */,
+				3B27CFA21DD9DC27008EA448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B27CFA61DD9DC27008EA448 /* PBXTargetDependency */,
+			);
+			name = FxMidasTests;
+			productName = FxMidasTests;
+			productReference = 3B27CFA41DD9DC27008EA448 /* FxMidasTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3B27CFAE1DD9DC27008EA448 /* FxMidasUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B27CFBE1DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidasUITests" */;
+			buildPhases = (
+				3B27CFAB1DD9DC27008EA448 /* Sources */,
+				3B27CFAC1DD9DC27008EA448 /* Frameworks */,
+				3B27CFAD1DD9DC27008EA448 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B27CFB11DD9DC27008EA448 /* PBXTargetDependency */,
+			);
+			name = FxMidasUITests;
+			productName = FxMidasUITests;
+			productReference = 3B27CFAF1DD9DC27008EA448 /* FxMidasUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B27CF851DD9DC27008EA448 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0810;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Studio Psion";
+				TargetAttributes = {
+					3B27CF8C1DD9DC27008EA448 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+					3B27CFA31DD9DC27008EA448 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3B27CF8C1DD9DC27008EA448;
+					};
+					3B27CFAE1DD9DC27008EA448 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3B27CF8C1DD9DC27008EA448;
+					};
+				};
+			};
+			buildConfigurationList = 3B27CF881DD9DC27008EA448 /* Build configuration list for PBXProject "FxMidas" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3B27CF841DD9DC27008EA448;
+			productRefGroup = 3B27CF8E1DD9DC27008EA448 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B27CF8C1DD9DC27008EA448 /* FxMidas */,
+				3B27CFA31DD9DC27008EA448 /* FxMidasTests */,
+				3B27CFAE1DD9DC27008EA448 /* FxMidasUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B27CF8B1DD9DC27008EA448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B27CF9E1DD9DC27008EA448 /* LaunchScreen.storyboard in Resources */,
+				3B27CF9B1DD9DC27008EA448 /* Assets.xcassets in Resources */,
+				3B27CF961DD9DC27008EA448 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B27CFA21DD9DC27008EA448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B27CFAD1DD9DC27008EA448 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B27CF891DD9DC27008EA448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B27CF991DD9DC27008EA448 /* FxMidas.xcdatamodeld in Sources */,
+				3B27CF931DD9DC27008EA448 /* ViewController.swift in Sources */,
+				3B27CF911DD9DC27008EA448 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B27CFA01DD9DC27008EA448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B27CFA91DD9DC27008EA448 /* FxMidasTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B27CFAB1DD9DC27008EA448 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B27CFB41DD9DC27008EA448 /* FxMidasUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B27CFA61DD9DC27008EA448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B27CF8C1DD9DC27008EA448 /* FxMidas */;
+			targetProxy = 3B27CFA51DD9DC27008EA448 /* PBXContainerItemProxy */;
+		};
+		3B27CFB11DD9DC27008EA448 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B27CF8C1DD9DC27008EA448 /* FxMidas */;
+			targetProxy = 3B27CFB01DD9DC27008EA448 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3B27CF941DD9DC27008EA448 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B27CF951DD9DC27008EA448 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3B27CF9C1DD9DC27008EA448 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B27CF9D1DD9DC27008EA448 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3B27CFB61DD9DC27008EA448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B27CFB71DD9DC27008EA448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B27CFB91DD9DC27008EA448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FxMidas/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.FxMidas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3B27CFBA1DD9DC27008EA448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FxMidas/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.FxMidas;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		3B27CFBC1DD9DC27008EA448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FxMidasTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.FxMidasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FxMidas.app/FxMidas";
+			};
+			name = Debug;
+		};
+		3B27CFBD1DD9DC27008EA448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FxMidasTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.FxMidasTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FxMidas.app/FxMidas";
+			};
+			name = Release;
+		};
+		3B27CFBF1DD9DC27008EA448 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = FxMidasUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.FxMidasUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = FxMidas;
+			};
+			name = Debug;
+		};
+		3B27CFC01DD9DC27008EA448 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = FxMidasUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.FxMidasUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = FxMidas;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B27CF881DD9DC27008EA448 /* Build configuration list for PBXProject "FxMidas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B27CFB61DD9DC27008EA448 /* Debug */,
+				3B27CFB71DD9DC27008EA448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B27CFB81DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidas" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B27CFB91DD9DC27008EA448 /* Debug */,
+				3B27CFBA1DD9DC27008EA448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3B27CFBB1DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidasTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B27CFBC1DD9DC27008EA448 /* Debug */,
+				3B27CFBD1DD9DC27008EA448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3B27CFBE1DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidasUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B27CFBF1DD9DC27008EA448 /* Debug */,
+				3B27CFC01DD9DC27008EA448 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3B27CF971DD9DC27008EA448 /* FxMidas.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3B27CF981DD9DC27008EA448 /* FxMidas.xcdatamodel */,
+			);
+			currentVersion = 3B27CF981DD9DC27008EA448 /* FxMidas.xcdatamodel */;
+			path = FxMidas.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3B27CF851DD9DC27008EA448 /* Project object */;
+}
