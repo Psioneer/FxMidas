@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import FacebookCore
+import UserNotifications
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +20,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.badge, .alert, .sound], completionHandler: { (granted, error) in
+            
+        })
+        application.registerForRemoteNotifications()
+        
+        let keychainItemWrapper = KeychainItemWrapper(identifier: "access info", accessGroup: nil)
+        if let authenticationToken = keychainItemWrapper["authenticationToken"] as? String {
+        
+            let path = "/debug_token?input_token=" + authenticationToken
+            let request = GraphRequest.init(graphPath: path)
+        
+            request.start({ (httpResponse, result) in
+                switch result {
+                case .failed(let error):
+                    print("Graph Request Failed: \(error)")
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
+                    self.window?.rootViewController = controller
+                    self.window?.makeKeyAndVisible()
+                case .success(let response):
+                    print("Graph Request Succeeded: \(response)")
+                
+                    if let responseDictionanry = response.dictionaryValue {
+                        if let data = responseDictionanry["data"] as? [String: Any] {
+                            if (data["is_valid"] as! Bool == true) {
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let controller = storyboard.instantiateViewController(withIdentifier: "TabBar")
+                                self.window?.rootViewController = controller
+                                self.window?.makeKeyAndVisible()
+                            } else {
+                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
+                                self.window?.rootViewController = controller
+                                self.window?.makeKeyAndVisible()
+                            }
+                        }
+                    }
+                }
+            })
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
+            self.window?.rootViewController = controller
+            self.window?.makeKeyAndVisible()            
+        }
         return true
+    }
+
+    func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        return SDKApplicationDelegate.shared.application(application, open: url, options: options)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -36,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        AppEventsLogger.activate(application)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -89,5 +145,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print("Device Token: \(deviceTokenString)")
+        
+        let uuidString = UIDevice.current.identifierForVendor!.uuidString
+        print("UUID String: \(uuidString)")
+        
+        let systemName = UIDevice.current.systemName
+        print(systemName)
+        let systemVersion = UIDevice.current.systemVersion
+        print(systemVersion)
+        //let keychainItemWrapper = KeychainItemWrapper(identifier: "access info", accessGroup: nil)
+        //keychainItemWrapper["deviceToken"] = deviceTokenString as AnyObject?
+        
+        // 서버로 os버전, 디바이스토큰, UUID 전송
+        
+        let parameters = [
+            "systemName": systemName,
+            "systemVersion": systemVersion,
+            "uuid": uuidString,
+            "deviceToken": deviceTokenString
+        ]
+        
+        Alamofire.request("http://fmapi.japaneast.cloudapp.azure.com/api/device", method: .post, parameters: parameters).validate().responseJSON { response in
+            switch response.result {
+            case .success:
+                print(response.result.value! as Any)
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+        
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        print("i am not available in simulator \(error)")
+        
+    }
+    
+    
 }
 

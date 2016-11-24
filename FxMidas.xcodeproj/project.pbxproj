@@ -8,13 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		3B27CF911DD9DC27008EA448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CF901DD9DC27008EA448 /* AppDelegate.swift */; };
-		3B27CF931DD9DC27008EA448 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CF921DD9DC27008EA448 /* ViewController.swift */; };
 		3B27CF961DD9DC27008EA448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B27CF941DD9DC27008EA448 /* Main.storyboard */; };
 		3B27CF991DD9DC27008EA448 /* FxMidas.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CF971DD9DC27008EA448 /* FxMidas.xcdatamodeld */; };
 		3B27CF9B1DD9DC27008EA448 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B27CF9A1DD9DC27008EA448 /* Assets.xcassets */; };
 		3B27CF9E1DD9DC27008EA448 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B27CF9C1DD9DC27008EA448 /* LaunchScreen.storyboard */; };
 		3B27CFA91DD9DC27008EA448 /* FxMidasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CFA81DD9DC27008EA448 /* FxMidasTests.swift */; };
 		3B27CFB41DD9DC27008EA448 /* FxMidasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CFB31DD9DC27008EA448 /* FxMidasUITests.swift */; };
+		3B27CFC21DD9DCEE008EA448 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CFC11DD9DCEE008EA448 /* RateViewController.swift */; };
+		3B27CFC41DD9E43B008EA448 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B27CFC31DD9E43B008EA448 /* ChartViewController.swift */; };
+		3B34C1D41DE6BFCC0099FE4C /* LogoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B34C1D31DE6BFCC0099FE4C /* LogoutViewController.swift */; };
+		3B6CF5761DE4587E007DB66E /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CF5751DE4587E007DB66E /* KeychainItemWrapper.swift */; };
+		3B6CF5781DE45A2E007DB66E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CF5771DE45A2E007DB66E /* LoginViewController.swift */; };
+		3B6CF57A1DE4800B007DB66E /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6CF5791DE4800B007DB66E /* PushKit.framework */; };
+		7D20B948DD5B6917716D783E /* Pods_FxMidas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBB73936B9588306258A1A8 /* Pods_FxMidas.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E1B3197CEB1650E0454296F /* Pods-FxMidas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FxMidas.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FxMidas/Pods-FxMidas.debug.xcconfig"; sourceTree = "<group>"; };
 		3B27CF8D1DD9DC27008EA448 /* FxMidas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FxMidas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B27CF901DD9DC27008EA448 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B27CF921DD9DC27008EA448 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B27CF951DD9DC27008EA448 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B27CF981DD9DC27008EA448 /* FxMidas.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FxMidas.xcdatamodel; sourceTree = "<group>"; };
 		3B27CF9A1DD9DC27008EA448 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +55,15 @@
 		3B27CFAF1DD9DC27008EA448 /* FxMidasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FxMidasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B27CFB31DD9DC27008EA448 /* FxMidasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FxMidasUITests.swift; sourceTree = "<group>"; };
 		3B27CFB51DD9DC27008EA448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B27CFC11DD9DCEE008EA448 /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		3B27CFC31DD9E43B008EA448 /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		3B34C1D31DE6BFCC0099FE4C /* LogoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutViewController.swift; sourceTree = "<group>"; };
+		3B6CF5741DE1BC3C007DB66E /* FxMidas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FxMidas.entitlements; sourceTree = "<group>"; };
+		3B6CF5751DE4587E007DB66E /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
+		3B6CF5771DE45A2E007DB66E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3B6CF5791DE4800B007DB66E /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		5DBE0FBB46974F9418187FAC /* Pods-FxMidas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FxMidas.release.xcconfig"; path = "Pods/Target Support Files/Pods-FxMidas/Pods-FxMidas.release.xcconfig"; sourceTree = "<group>"; };
+		FFBB73936B9588306258A1A8 /* Pods_FxMidas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FxMidas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6CF57A1DE4800B007DB66E /* PushKit.framework in Frameworks */,
+				7D20B948DD5B6917716D783E /* Pods_FxMidas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +100,8 @@
 				3B27CFA71DD9DC27008EA448 /* FxMidasTests */,
 				3B27CFB21DD9DC27008EA448 /* FxMidasUITests */,
 				3B27CF8E1DD9DC27008EA448 /* Products */,
+				CBF113B1AA5FE284DA15911B /* Pods */,
+				C72A9989B4BA722AF506340D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +118,18 @@
 		3B27CF8F1DD9DC27008EA448 /* FxMidas */ = {
 			isa = PBXGroup;
 			children = (
+				3B6CF5751DE4587E007DB66E /* KeychainItemWrapper.swift */,
+				3B6CF5741DE1BC3C007DB66E /* FxMidas.entitlements */,
 				3B27CF901DD9DC27008EA448 /* AppDelegate.swift */,
-				3B27CF921DD9DC27008EA448 /* ViewController.swift */,
+				3B27CFC11DD9DCEE008EA448 /* RateViewController.swift */,
+				3B27CFC31DD9E43B008EA448 /* ChartViewController.swift */,
 				3B27CF941DD9DC27008EA448 /* Main.storyboard */,
 				3B27CF9A1DD9DC27008EA448 /* Assets.xcassets */,
 				3B27CF9C1DD9DC27008EA448 /* LaunchScreen.storyboard */,
 				3B27CF9F1DD9DC27008EA448 /* Info.plist */,
 				3B27CF971DD9DC27008EA448 /* FxMidas.xcdatamodeld */,
+				3B6CF5771DE45A2E007DB66E /* LoginViewController.swift */,
+				3B34C1D31DE6BFCC0099FE4C /* LogoutViewController.swift */,
 			);
 			path = FxMidas;
 			sourceTree = "<group>";
@@ -128,6 +152,24 @@
 			path = FxMidasUITests;
 			sourceTree = "<group>";
 		};
+		C72A9989B4BA722AF506340D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3B6CF5791DE4800B007DB66E /* PushKit.framework */,
+				FFBB73936B9588306258A1A8 /* Pods_FxMidas.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CBF113B1AA5FE284DA15911B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1E1B3197CEB1650E0454296F /* Pods-FxMidas.debug.xcconfig */,
+				5DBE0FBB46974F9418187FAC /* Pods-FxMidas.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3B27CFB81DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidas" */;
 			buildPhases = (
+				8215642F4CE104BC6811CD61 /* [CP] Check Pods Manifest.lock */,
 				3B27CF891DD9DC27008EA448 /* Sources */,
 				3B27CF8A1DD9DC27008EA448 /* Frameworks */,
 				3B27CF8B1DD9DC27008EA448 /* Resources */,
+				8CB199540129FB6DE7CAAD82 /* [CP] Embed Pods Frameworks */,
+				1974349DCC42EBB53DF84B4C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,7 +241,17 @@
 				TargetAttributes = {
 					3B27CF8C1DD9DC27008EA448 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 5E5BB8Y4E7;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					3B27CFA31DD9DC27008EA448 = {
 						CreatedOnToolsVersion = 8.1;
@@ -257,14 +312,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1974349DCC42EBB53DF84B4C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FxMidas/Pods-FxMidas-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8215642F4CE104BC6811CD61 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8CB199540129FB6DE7CAAD82 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FxMidas/Pods-FxMidas-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		3B27CF891DD9DC27008EA448 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6CF5781DE45A2E007DB66E /* LoginViewController.swift in Sources */,
 				3B27CF991DD9DC27008EA448 /* FxMidas.xcdatamodeld in Sources */,
-				3B27CF931DD9DC27008EA448 /* ViewController.swift in Sources */,
+				3B27CFC21DD9DCEE008EA448 /* RateViewController.swift in Sources */,
 				3B27CF911DD9DC27008EA448 /* AppDelegate.swift in Sources */,
+				3B34C1D41DE6BFCC0099FE4C /* LogoutViewController.swift in Sources */,
+				3B6CF5761DE4587E007DB66E /* KeychainItemWrapper.swift in Sources */,
+				3B27CFC41DD9E43B008EA448 /* ChartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,23 +521,32 @@
 		};
 		3B27CFB91DD9DC27008EA448 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E1B3197CEB1650E0454296F /* Pods-FxMidas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FxMidas/FxMidas.entitlements;
+				DEVELOPMENT_TEAM = 5E5BB8Y4E7;
 				INFOPLIST_FILE = FxMidas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.FxMidas;
+				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.test.fxmidas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		3B27CFBA1DD9DC27008EA448 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DBE0FBB46974F9418187FAC /* Pods-FxMidas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FxMidas/FxMidas.entitlements;
+				DEVELOPMENT_TEAM = 5E5BB8Y4E7;
 				INFOPLIST_FILE = FxMidas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.FxMidas;
+				PRODUCT_BUNDLE_IDENTIFIER = com.studiopsion.test.fxmidas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -509,6 +625,7 @@
 				3B27CFBA1DD9DC27008EA448 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B27CFBB1DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidasTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +634,7 @@
 				3B27CFBD1DD9DC27008EA448 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B27CFBE1DD9DC27008EA448 /* Build configuration list for PBXNativeTarget "FxMidasUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +643,7 @@
 				3B27CFC01DD9DC27008EA448 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
