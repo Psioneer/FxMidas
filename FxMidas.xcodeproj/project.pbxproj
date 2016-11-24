@@ -20,6 +20,7 @@
 		3B6CF5761DE4587E007DB66E /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CF5751DE4587E007DB66E /* KeychainItemWrapper.swift */; };
 		3B6CF5781DE45A2E007DB66E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CF5771DE45A2E007DB66E /* LoginViewController.swift */; };
 		3B6CF57A1DE4800B007DB66E /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6CF5791DE4800B007DB66E /* PushKit.framework */; };
+		3BEC82E71DE72F89005A044C /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC82E61DE72F89005A044C /* EmailLoginViewController.swift */; };
 		7D20B948DD5B6917716D783E /* Pods_FxMidas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBB73936B9588306258A1A8 /* Pods_FxMidas.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		3B6CF5751DE4587E007DB66E /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		3B6CF5771DE45A2E007DB66E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3B6CF5791DE4800B007DB66E /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		3BEC82E61DE72F89005A044C /* EmailLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		5DBE0FBB46974F9418187FAC /* Pods-FxMidas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FxMidas.release.xcconfig"; path = "Pods/Target Support Files/Pods-FxMidas/Pods-FxMidas.release.xcconfig"; sourceTree = "<group>"; };
 		FFBB73936B9588306258A1A8 /* Pods_FxMidas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FxMidas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 				3B27CF971DD9DC27008EA448 /* FxMidas.xcdatamodeld */,
 				3B6CF5771DE45A2E007DB66E /* LoginViewController.swift */,
 				3B34C1D31DE6BFCC0099FE4C /* LogoutViewController.swift */,
+				3BEC82E61DE72F89005A044C /* EmailLoginViewController.swift */,
 			);
 			path = FxMidas;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B6CF5781DE45A2E007DB66E /* LoginViewController.swift in Sources */,
+				3BEC82E71DE72F89005A044C /* EmailLoginViewController.swift in Sources */,
 				3B27CF991DD9DC27008EA448 /* FxMidas.xcdatamodeld in Sources */,
 				3B27CFC21DD9DCEE008EA448 /* RateViewController.swift in Sources */,
 				3B27CF911DD9DC27008EA448 /* AppDelegate.swift in Sources */,
