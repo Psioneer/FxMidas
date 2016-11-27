@@ -21,14 +21,20 @@ class LogoutViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func LogoutFacebook(_ sender: UIButton) {
-        let loginManager = LoginManager()
-        loginManager.logOut()
+    @IBAction func logout(_ sender: UIButton) {
+
+        let keychainItemWrapper = KeychainItemWrapper(identifier: "access info", accessGroup: nil)
+
+        if keychainItemWrapper["userType"] as! String == "facebook" {
+            let loginManager = LoginManager()
+            loginManager.logOut()
+        } else if keychainItemWrapper["userType"] as! String == "email" {
+            keychainItemWrapper["apiAccessToken"] = nil
+        }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
         self.present(controller, animated: true, completion: nil)
-
     }
 }
 

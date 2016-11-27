@@ -10,6 +10,7 @@ import UIKit
 import FacebookCore
 import FacebookLogin
 import Alamofire
+import SwiftyJSON
 
 class LoginViewController: UIViewController {
     
@@ -28,14 +29,17 @@ class LoginViewController: UIViewController {
         switch result {
         case .cancelled:
             print("User cancelled login.")
+            break
         case .failed(let error):
             print(error)
+            break
         case .success(_, _, let accessToken):
             print(accessToken)
             
             let keychainItemWrapper = KeychainItemWrapper(identifier: "access info", accessGroup: nil)
             keychainItemWrapper["authenticationToken"] = accessToken.authenticationToken as AnyObject?
             keychainItemWrapper["userId"] = accessToken.userId as AnyObject?
+            keychainItemWrapper["userType"] = "facebook" as AnyObject?
             
             let request = GraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"], accessToken: accessToken, httpMethod: .GET, apiVersion: 2.8)
             request.start({ (httpResponse, result) in
@@ -52,7 +56,6 @@ class LoginViewController: UIViewController {
                         let uuidString = UIDevice.current.identifierForVendor!.uuidString
 
                         let parameters = [
-                            "userType"  : "facebook",
                             "uuid"      : uuidString,
                             "name"      : responseDictionary["name"]!,
                             "email"     : responseDictionary["email"]!,
@@ -62,19 +65,34 @@ class LoginViewController: UIViewController {
                         
                         Alamofire.request("http://fmapi.japaneast.cloudapp.azure.com/api/facebook/user", method: .post, parameters: parameters).validate().responseJSON { response in
                             switch response.result {
-                            case .success:
+                            case .success(let data):
                                 print(response.result.value! as Any)
+
+                                let json = JSON(data)
+                                let code = json["code"].intValue
+                                
+                                if (code == 0) {
+                                    keychainItemWrapper["apiAccessToken"] = json["token"].stringValue as AnyObject?
+                                    
+                                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                    let controller = storyboard.instantiateViewController(withIdentifier: "TabBar")
+                                    self.present(controller, animated: true, completion: nil)
+                                } else if (code == 1) {
+                                    // 틀린 계정 정보 경고창 표시
+                                    print(json["message"].stringValue)
+                                } else {
+                                    // 데이터베이스 조회 장애
+                                    print("Can not connect database system!")
+                                }
+                                break
                             case .failure(let error):
                                 print(error)
+                                break
                             }
                         }
                     }
                 }
             })
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let controller = storyboard.instantiateViewController(withIdentifier: "TabBar")
-            self.present(controller, animated: true, completion: nil)
         }
     }
 

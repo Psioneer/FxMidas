@@ -29,45 +29,85 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         let keychainItemWrapper = KeychainItemWrapper(identifier: "access info", accessGroup: nil)
-        if let authenticationToken = keychainItemWrapper["authenticationToken"] as? String {
-        
-            let path = "/debug_token?input_token=" + authenticationToken
-            let request = GraphRequest.init(graphPath: path)
-        
-            request.start({ (httpResponse, result) in
-                switch result {
-                case .failed(let error):
-                    print("Graph Request Failed: \(error)")
+        if let userType = keychainItemWrapper["userType"] as? String {
+            if (userType == "facebook") {
+                if let authenticationToken = keychainItemWrapper["authenticationToken"] as? String {
+                    
+                    let path = "/debug_token?input_token=" + authenticationToken
+                    let request = GraphRequest.init(graphPath: path)
+                    
+                    request.start({ (httpResponse, result) in
+                        switch result {
+                        case .failed(let error):
+                            print("Graph Request Failed: \(error)")
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
+                            self.window?.rootViewController = controller
+                            self.window?.makeKeyAndVisible()
+                        case .success(let response):
+                            print("Graph Request Succeeded: \(response)")
+                            
+                            if let responseDictionanry = response.dictionaryValue {
+                                if let data = responseDictionanry["data"] as? [String: Any] {
+                                    if (data["is_valid"] as! Bool == true) {
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let controller = storyboard.instantiateViewController(withIdentifier: "TabBar")
+                                        self.window?.rootViewController = controller
+                                        self.window?.makeKeyAndVisible()
+                                    } else {
+                                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                                        let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
+                                        self.window?.rootViewController = controller
+                                        self.window?.makeKeyAndVisible()
+                                    }
+                                }
+                            }
+                        }
+                    })
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
+                    self.window?.rootViewController = controller
+                    self.window?.makeKeyAndVisible()            
+                }
+            } else if (userType == "email") {
+                if let apiAccessToken = keychainItemWrapper["apiAccessToken"] as? String {
+                    let headers: HTTPHeaders = [
+                        "x-access-token": apiAccessToken
+                    ]
+                    
+                    Alamofire.request("http://fmapi.japaneast.cloudapp.azure.com/api/validate", headers: headers).validate().responseJSON { response in
+                        switch response.result {
+                        case .failure(let error):
+                            print(error)
+                            
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
+                            self.window?.rootViewController = controller
+                            self.window?.makeKeyAndVisible()
+                        case .success:
+                            print(response.result.value! as Any)
+                            
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let controller = storyboard.instantiateViewController(withIdentifier: "TabBar")
+                            self.window?.rootViewController = controller
+                            self.window?.makeKeyAndVisible()
+                        }
+                    }
+                } else {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
                     self.window?.rootViewController = controller
                     self.window?.makeKeyAndVisible()
-                case .success(let response):
-                    print("Graph Request Succeeded: \(response)")
-                
-                    if let responseDictionanry = response.dictionaryValue {
-                        if let data = responseDictionanry["data"] as? [String: Any] {
-                            if (data["is_valid"] as! Bool == true) {
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let controller = storyboard.instantiateViewController(withIdentifier: "TabBar")
-                                self.window?.rootViewController = controller
-                                self.window?.makeKeyAndVisible()
-                            } else {
-                                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                                let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
-                                self.window?.rootViewController = controller
-                                self.window?.makeKeyAndVisible()
-                            }
-                        }
-                    }
                 }
-            })
+            }
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "LoginNavi")
             self.window?.rootViewController = controller
-            self.window?.makeKeyAndVisible()            
+            self.window?.makeKeyAndVisible()
         }
+        
         return true
     }
 
@@ -174,8 +214,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch response.result {
             case .success:
                 print(response.result.value! as Any)
+                break;
             case .failure(let error):
                 print(error)
+                break;
             }
             
         }

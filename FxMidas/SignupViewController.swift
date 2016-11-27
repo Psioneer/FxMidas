@@ -1,8 +1,8 @@
 //
-//  EmailLoginViewController.swift
+//  SignupViewController.swift
 //  FxMidas
 //
-//  Created by KOBOKKYUNG on 2016. 11. 24..
+//  Created by KOBOKKYUNG on 2016. 11. 26..
 //  Copyright © 2016년 Studio Psion. All rights reserved.
 //
 
@@ -10,10 +10,12 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class EmailLoginViewController: UIViewController {
+class SignupViewController: UIViewController {
     
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +27,18 @@ class EmailLoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func loginButton(_ sender: UIButton) {
+    @IBAction func signupEmail(_ sender: UIButton) {
+        
         let uuidString = UIDevice.current.identifierForVendor!.uuidString
-
+        
         let parameters = [
             "uuid"      : uuidString,
+            "name"      : nameTextField.text!,
             "email"     : emailTextField.text!,
             "password"  : passwordTextField.text!
         ]
-                    
-        Alamofire.request("http://fmapi.japaneast.cloudapp.azure.com/api/authenticate", method: .post, parameters: parameters).validate().responseJSON { response in
+        
+        Alamofire.request("http://fmapi.japaneast.cloudapp.azure.com/api/user", method: .post, parameters: parameters).validate().responseJSON { response in
             switch response.result {
             case .failure(let error):
                 print(error)
@@ -43,23 +47,22 @@ class EmailLoginViewController: UIViewController {
                 
                 let json = JSON(data)
                 let code = json["code"].intValue
-
+                let message = json["message"].stringValue
+                
                 if (code == 0) {
                     let keychainItemWrapper = KeychainItemWrapper(identifier: "access info", accessGroup: nil)
                     keychainItemWrapper["apiAccessToken"] = json["token"].stringValue as AnyObject?
                     keychainItemWrapper["userType"] = "email" as AnyObject?
-
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let controller = storyboard.instantiateViewController(withIdentifier: "TabBar")
                     self.present(controller, animated: true, completion: nil)
-                } else if (code == 2) {
-                    // 틀린 계정 정보 경고창 표시
-                    print("Wrong user info!")
                 } else {
-                    // 데이터베이스 조회 장애
-                    print("Can not connect database system!")
+                    // 등록 에러 경고 표시
+                    print(message)
                 }
             }
         }
     }
 }
+
