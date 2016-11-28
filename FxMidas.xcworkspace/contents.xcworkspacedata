@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Transaction+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:Transaction+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:FxMidas.xcodeproj">
    </FileRef>
    <FileRef

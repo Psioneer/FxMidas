@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "56A1392F3A51F7BCC91062E86A0ED73B"
+               BlueprintIdentifier = "7893231B82CECDB75E4F7A8643587001"
                BuildableName = "Pods_FxMidas.framework"
                BlueprintName = "Pods-FxMidas"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "56A1392F3A51F7BCC91062E86A0ED73B"
+            BlueprintIdentifier = "7893231B82CECDB75E4F7A8643587001"
             BuildableName = "Pods_FxMidas.framework"
             BlueprintName = "Pods-FxMidas"
             ReferencedContainer = "container:Pods.xcodeproj">

@@ -7,4 +7,5 @@ target 'FxMidas' do
 	pod 'FacebookShare'
 	pod ‘Alamofire’, ‘~> 4.0’
 	pod 'SwiftyJSON'
+	pod 'Charts'
 end

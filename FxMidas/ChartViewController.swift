@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import Charts
 
-class ChartViewController: UIViewController {
+class ChartViewController: UIViewController, ChartViewDelegate {
+    @IBOutlet weak var lineChartView: LineChartView!
+    
+    var months: [String]!
+    var dollars1: [Double] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        dollars1 = [1453.0, 2352, 5431, 1442, 5451, 6486, 1173, 5678, 9234, 1345, 9411, 2212]
+        
+        self.lineChartView.delegate = self
+        self.lineChartView.gridBackgroundColor = UIColor.darkGray
+        self.lineChartView.noDataText = "No data provided"
+        setChartData(months: months)
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -20,62 +34,30 @@ class ChartViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func HttpRequest(address: String, mail: String, pass: String, phone: String, regKey: String) -> String{
-        
-        var text = "NO"
-        let url = URL(string: address)
-        var request = URLRequest(url: url!)
-        let tmparam = ["email":mail,"password":pass, "phoneID":phone,"regKey":regKey]
-        
-        
-        let postString = try! JSONSerialization.data(withJSONObject: tmparam, options: .init(rawValue: 0))
-        
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        
-        
-        request.httpBody = postString
-        
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { data,response,error in
-            
-            let httpResult = response as! HTTPURLResponse
-            
-            if httpResult.statusCode != 200
-            {
-                //let tmpInt = httpResult.statusCode
-                text = "Error" //+ String(tmpInt)
-            }
-            
-            do{
-                
-                let result = try JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any]
-                
-                let returnCode = result["code"] as! Int
-                //let base = result["baseInfo"] as! String
-                //text = returnCode!
-                text = String(returnCode)
-                
-                if text == "10003" {
-                    text = "Mail Error"
-                }
-                
-            } catch {
-                text = "Error"
-            }
-            
-        }
-        )
-        
-        task.resume()
-        
-        while task.state.rawValue != 3 {
-            sleep(1)
+    func setChartData(months: [String]) {
+        var yVals1 : [ChartDataEntry] = [ChartDataEntry]()
+        for i in 0 ..< months.count {
+            yVals1.append(ChartDataEntry(x: Double(i), y: dollars1[i], data: months[i] as AnyObject?))
         }
         
-        return text
+        let set1: LineChartDataSet = LineChartDataSet(values: yVals1, label: "First Set")
+        set1.axisDependency = .left
+        set1.setColor(UIColor.red.withAlphaComponent(0.5))
+        set1.setCircleColor(UIColor.red)
+        set1.lineWidth = 2.0
+        set1.circleRadius = 6.0
+        set1.fillAlpha = 65 / 255.0
+        set1.fillColor = UIColor.red
+        set1.highlightColor = UIColor.white
+        set1.drawCircleHoleEnabled = true
+        
+        var dataSets: [LineChartDataSet] = [LineChartDataSet]()
+        dataSets.append(set1)
+        
+        let data: LineChartData = LineChartData(dataSets: dataSets)
+        data.setValueTextColor(UIColor.white)
+        
+        self.lineChartView.data = data
     }
-    
 }
 

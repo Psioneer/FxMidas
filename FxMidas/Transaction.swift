@@ -12,8 +12,8 @@ class Transaction: NSObject {
 
     var currency: String?
     var time: Date?
-    var amount: Float?
+    var amount: NSNumber?
     var decision: String?
-    var profit: Float?
+    var profit: NSNumber?
     
 }

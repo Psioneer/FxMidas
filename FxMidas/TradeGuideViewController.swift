@@ -17,16 +17,28 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
     @IBOutlet weak var intervalButton: UIButton!
     @IBOutlet weak var currencyPairPickerView: UIPickerView!
     @IBOutlet weak var intervalPickerView: UIPickerView!
-    
-    var currencyPairs   = ["USD/JPY", "EUR/JPY", "EUR/USD", "AUD/JPY"]
-    var intervalStrings = ["5 Minutes", "15 Minutes", "30 Minutes", "1 Hour"]
-    var intervals       = ["05",        "15",         "30",         "60"]
+    @IBOutlet weak var profitOfWeekLabel: UILabel!
+    @IBOutlet weak var profitOfMonthLabel: UILabel!
+
+    let currencyPairs   = ["USD/JPY", "EUR/JPY", "EUR/USD", "AUD/JPY"]
+    let intervalStrings = ["5 Minutes", "15 Minutes", "30 Minutes", "1 Hour"]
+    let intervals       = ["05",        "15",         "30",         "60"]
+    var currentCurrency = ""
+    var currentInterval = ""
     
     var transactions:Array<Transaction> = Array<Transaction>()
-    
+
+    let dateFormatter = DateFormatter()
+    let numberFormatter = NumberFormatter()
+    var firstDayOfWeek = Date()
+    var firstDayOfMonth = Date()
+    var profitOfWeek: NSNumber = 0.0
+    var profitOfMonth: NSNumber = 0.0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        numberFormatter.numberStyle = .decimal
         
         transactionTableView.delegate = self
         transactionTableView.dataSource = self
@@ -39,46 +51,63 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
         currencyPairButton.setTitle(currencyPairs[0], for: .normal)
         intervalButton.setTitle(intervalStrings[3], for: .normal)
         
+        currentCurrency = currencyPairs[0]
+        currentInterval = intervals[3]
+        getTransactions(currency: currentCurrency, interval: currentInterval)
+    }
+    
+    func getTransactions(currency: String, interval: String) {
         let keychainItemWrapper = KeychainItemWrapper(identifier: "access info", accessGroup: nil)
-
+        
         if let apiAccessToken = keychainItemWrapper["apiAccessToken"] as? String {
             let headers: HTTPHeaders = [
                 "x-access-token": apiAccessToken
             ]
             
             let parameters = [
-                "currency":currencyPairs[0].addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!,
-                "interval":intervals[3]
+                "currency":currency.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!,
+                "interval":interval
             ]
-
+            
             Alamofire.request("http://fmapi.japaneast.cloudapp.azure.com/api/transactions", parameters: parameters, headers: headers).validate().responseJSON { response in
                 switch response.result {
                 case .failure(let error):
                     print(error)
                     
                 case .success(let value):
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                     let json = JSON(value)
-                    for (index, trns) in json {
+                    self.transactions.removeAll()
+                    
+                    self.firstDayOfWeek = self.getWeekFirstDay(from: Date())!
+                    self.firstDayOfMonth = self.getMonthFirstDay(from: Date())!
+                    self.profitOfWeek = 0
+                    self.profitOfMonth = 0
+
+                    self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                    for (_, trns) in json {
                         let transaction = Transaction()
                         
                         transaction.currency = trns["currency"].string
-                        transaction.time = dateFormatter.date(from: trns["time"].string!)
-                        transaction.amount = trns["amount"].float
+                        transaction.time = self.dateFormatter.date(from: trns["time"].string!)
+                        transaction.amount = trns["amount"].number
                         transaction.decision = trns["decision"].string
-                        transaction.profit = trns["profit"].float
-
+                        transaction.profit = trns["profit"].number
+                        
                         self.transactions.append(transaction)
                     }
                     
                     for transaction in self.transactions {
-                        print(transaction.currency! as Any)
-                        print(dateFormatter.string(from: transaction.time!) as String)
-                        print(transaction.amount! as Any)
-                        print(transaction.decision! as Any)
-                        print(transaction.profit! as Any)
+                        if self.firstDayOfWeek < transaction.time! {
+                            self.profitOfWeek = self.profitOfWeek.floatValue + (transaction.profit?.floatValue)! as NSNumber
+                        }
+                        if self.firstDayOfMonth < transaction.time! {
+                            self.profitOfMonth = self.profitOfMonth.floatValue + (transaction.profit?.floatValue)! as NSNumber
+                        }
                     }
+                    
+                    self.profitOfWeekLabel.text = String((self.profitOfWeek.floatValue*10).rounded()/10)
+                    self.profitOfMonthLabel.text = String((self.profitOfMonth.floatValue*10).rounded()/10)
+                    self.transactionTableView.reloadData()
                 }
             }
         } else {
@@ -106,9 +135,16 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = transactionTableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath)
+        let cell: TransactionTableViewCell = transactionTableView.dequeueReusableCell(withIdentifier: "TransactionCell", for: indexPath) as! TransactionTableViewCell
      
         // Configure the cell...
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        cell.currencyLabel.text = transactions[indexPath.row].currency
+        cell.timeLabel.text = dateFormatter.string(from: transactions[indexPath.row].time!)
+        cell.amountLabel.text = String(format: "%.3f", transactions[indexPath.row].amount!.floatValue) //numberFormatter.string(from: transactions[indexPath.row].amount!)
+        cell.decisionLabel.text = transactions[indexPath.row].decision
+        cell.profitLabel.text = String(format: "%.1f", transactions[indexPath.row].profit!.floatValue) //numberFormatter.string(from: transactions[indexPath.row].profit!)
         
         return cell
     }
@@ -182,9 +218,15 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
         if pickerView.tag == 0 {
             currencyPairButton.setTitle(currencyPairs[row], for: .normal)
             currencyPairPickerView.isHidden = true
+            
+            currentCurrency = currencyPairs[row]
+            getTransactions(currency: currentCurrency, interval: currentInterval)
         } else if pickerView.tag == 1 {
             intervalButton.setTitle(intervalStrings[row], for: .normal)
             intervalPickerView.isHidden = true
+            
+            currentInterval = intervals[row]
+            getTransactions(currency: currentCurrency, interval: currentInterval)
         }
     }
     
@@ -196,5 +238,31 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
         intervalPickerView.isHidden = !intervalPickerView.isHidden
     }
     
+    private func getWeekFirstDay(from sourceDate:Date) -> Date? {
+        let Calendar = NSCalendar(calendarIdentifier: .gregorian)!
+        var sourceComp = sourceDate.components
+        var comp = DateComponents()
+        comp.weekOfYear = sourceComp.weekOfYear
+        comp.weekday = 1
+        comp.yearForWeekOfYear = sourceComp.yearForWeekOfYear
+        return Calendar.date(from: comp)
+    }
+    
+    private func getMonthFirstDay(from sourceDate:Date) -> Date? {
+        let Calendar = NSCalendar(calendarIdentifier: .gregorian)!
+        var sourceComp = sourceDate.components
+        var comp = DateComponents()
+        comp.month = sourceComp.month
+        comp.day = 1
+        comp.year = sourceComp.year
+        return Calendar.date(from: comp)
+    }
+    
 }
 
+extension Date {
+    var components:DateComponents {
+        let cal = NSCalendar.current
+        return cal.dateComponents(Set([.year, .month, .day, .hour, .minute, .second, .weekday, .weekOfYear, .yearForWeekOfYear]), from: self)
+    }
+}
