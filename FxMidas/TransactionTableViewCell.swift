@@ -9,7 +9,6 @@
 import UIKit
 
 class TransactionTableViewCell: UITableViewCell {
-    @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var decisionLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!

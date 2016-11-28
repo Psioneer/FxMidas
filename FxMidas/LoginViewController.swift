@@ -13,11 +13,13 @@ import Alamofire
 import SwiftyJSON
 
 class LoginViewController: UIViewController {
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        activityIndicator.isHidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,10 +31,12 @@ class LoginViewController: UIViewController {
         switch result {
         case .cancelled:
             print("User cancelled login.")
-            break
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
         case .failed(let error):
             print(error)
-            break
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
         case .success(_, _, let accessToken):
             print(accessToken)
             
@@ -46,6 +50,8 @@ class LoginViewController: UIViewController {
                 switch result {
                 case .failed(let error):
                     print("Graph Request Failed: \(error)")
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true
                 case .success(let response):
                     print("Graph Request Succeeded: \(response)")
                     if let responseDictionary = response.dictionaryValue {
@@ -84,10 +90,14 @@ class LoginViewController: UIViewController {
                                     // 데이터베이스 조회 장애
                                     print("Can not connect database system!")
                                 }
-                                break
+                                
+                                self.activityIndicator.stopAnimating()
+                                self.activityIndicator.isHidden = true
                             case .failure(let error):
                                 print(error)
-                                break
+                                
+                                self.activityIndicator.stopAnimating()
+                                self.activityIndicator.isHidden = true
                             }
                         }
                     }
@@ -97,6 +107,8 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginFacebook(_ sender: UIButton) {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         let loginManager = LoginManager()
         loginManager.logIn([.publicProfile, .email], viewController: self, completion: {
             result in self.loginManagerDidComplete(result)

@@ -105,6 +105,18 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
                         }
                     }
                     
+                    if self.profitOfWeek.floatValue < 0 {
+                        self.profitOfWeekLabel.textColor = UIColor.red
+                    } else {
+                        self.profitOfWeekLabel.textColor = UIColor.blue
+                    }
+                    
+                    if self.profitOfMonth.floatValue < 0 {
+                        self.profitOfMonthLabel.textColor = UIColor.red
+                    } else {
+                        self.profitOfMonthLabel.textColor = UIColor.blue
+                    }
+                    
                     self.profitOfWeekLabel.text = String((self.profitOfWeek.floatValue*10).rounded()/10)
                     self.profitOfMonthLabel.text = String((self.profitOfMonth.floatValue*10).rounded()/10)
                     self.transactionTableView.reloadData()
@@ -140,11 +152,15 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
         // Configure the cell...
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-        cell.currencyLabel.text = transactions[indexPath.row].currency
         cell.timeLabel.text = dateFormatter.string(from: transactions[indexPath.row].time!)
         cell.amountLabel.text = String(format: "%.3f", transactions[indexPath.row].amount!.floatValue) //numberFormatter.string(from: transactions[indexPath.row].amount!)
         cell.decisionLabel.text = transactions[indexPath.row].decision
         cell.profitLabel.text = String(format: "%.1f", transactions[indexPath.row].profit!.floatValue) //numberFormatter.string(from: transactions[indexPath.row].profit!)
+        if transactions[indexPath.row].profit!.floatValue < 0 {
+            cell.profitLabel.textColor = UIColor.red
+        } else {
+            cell.profitLabel.textColor = UIColor.blue
+        }
         
         return cell
     }
