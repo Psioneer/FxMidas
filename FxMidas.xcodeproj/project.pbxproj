@@ -20,6 +20,7 @@
 		3B6CF5761DE4587E007DB66E /* KeychainItemWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CF5751DE4587E007DB66E /* KeychainItemWrapper.swift */; };
 		3B6CF5781DE45A2E007DB66E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6CF5771DE45A2E007DB66E /* LoginViewController.swift */; };
 		3B6CF57A1DE4800B007DB66E /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6CF5791DE4800B007DB66E /* PushKit.framework */; };
+		3B88E3741DF1632D00EC8177 /* aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B88E3731DF1632D00EC8177 /* aggregate.swift */; };
 		3BEC82E71DE72F89005A044C /* EmailLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC82E61DE72F89005A044C /* EmailLoginViewController.swift */; };
 		3BEC82E91DE929C8005A044C /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC82E81DE929C8005A044C /* SignupViewController.swift */; };
 		3BEC82EB1DE956B5005A044C /* TradeGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEC82EA1DE956B5005A044C /* TradeGuideViewController.swift */; };
@@ -67,6 +68,7 @@
 		3B6CF5751DE4587E007DB66E /* KeychainItemWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemWrapper.swift; sourceTree = "<group>"; };
 		3B6CF5771DE45A2E007DB66E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3B6CF5791DE4800B007DB66E /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		3B88E3731DF1632D00EC8177 /* aggregate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = aggregate.swift; sourceTree = "<group>"; };
 		3BEC82E61DE72F89005A044C /* EmailLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailLoginViewController.swift; sourceTree = "<group>"; };
 		3BEC82E81DE929C8005A044C /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		3BEC82EA1DE956B5005A044C /* TradeGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradeGuideViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				3BEC82EA1DE956B5005A044C /* TradeGuideViewController.swift */,
 				3BEC82F01DEAFF7D005A044C /* Transaction.swift */,
 				3BEC82F21DEB23E5005A044C /* TransactionTableViewCell.swift */,
+				3B88E3731DF1632D00EC8177 /* aggregate.swift */,
 			);
 			path = FxMidas;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BEC82F11DEAFF7D005A044C /* Transaction.swift in Sources */,
+				3B88E3741DF1632D00EC8177 /* aggregate.swift in Sources */,
 				3BEC82E91DE929C8005A044C /* SignupViewController.swift in Sources */,
 				3B6CF5781DE45A2E007DB66E /* LoginViewController.swift in Sources */,
 				3BEC82E71DE72F89005A044C /* EmailLoginViewController.swift in Sources */,

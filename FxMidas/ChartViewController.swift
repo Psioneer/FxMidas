@@ -8,25 +8,86 @@
 
 import UIKit
 import Charts
+import Alamofire
+import SwiftyJSON
+
 
 class ChartViewController: UIViewController, ChartViewDelegate {
-    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var candleStickChartView: CandleStickChartView!
     
-    var months: [String]!
-    var dollars1: [Double] = []
+    var aggregates:Array<Aggregate> = Array<Aggregate>()
+    let dateFormatter = DateFormatter()
+    
+    var baseTimes: [Date]!
+    var lowBids: [Double]!
+    var highBids: [Double]!
+    var openBids: [Double]!
+    var closeBids: [Double]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        dollars1 = [1453.0, 2352, 5431, 1442, 5451, 6486, 1173, 5678, 9234, 1345, 9411, 2212]
+/*
+        getAggregate(currency: "USD/JPY", interval: "60")
         
-        self.lineChartView.delegate = self
-        self.lineChartView.gridBackgroundColor = UIColor.darkGray
-        self.lineChartView.noDataText = "No data provided"
-        setChartData(months: months)
+        self.candleStickChartView.delegate = self
+        self.candleStickChartView.gridBackgroundColor = UIColor.darkGray
+        self.candleStickChartView.noDataText = "No data provided"
+        setChartData(times: baseTimes)
+*/
+    }
+    
+    func getAggregate(currency: String, interval: String) {
+        let keychainItemWrapper = KeychainItemWrapper(identifier: "access info", accessGroup: nil)
         
+        if let apiAccessToken = keychainItemWrapper["apiAccessToken"] as? String {
+            let headers: HTTPHeaders = [
+                "x-access-token": apiAccessToken
+            ]
+            
+            let parameters = [
+                "currency":currency.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!,
+                "interval":interval
+            ]
+            
+            Alamofire.request("http://fmapi.japaneast.cloudapp.azure.com/api/aggregates", parameters: parameters, headers: headers).validate().responseJSON { response in
+                switch response.result {
+                case .failure(let error):
+                    print(error)
+                    
+                case .success(let value):
+                    let json = JSON(value)
+/*                    self.aggregates.removeAll()
+                                        
+                    self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+                    for (_, aggr) in json {
+                        let aggregate = Aggregate()
+                        
+                        aggregate.currency = aggr["currency"].string
+                        aggregate.baseTime = self.dateFormatter.date(from: aggr["baseTime"].string!)
+                        aggregate.highBid = aggr["maxBid"].number
+                        aggregate.lowBid = aggr["minBid"].number
+                        aggregate.openBid = aggr["inBid"].number
+                        aggregate.closeBid = aggr["outBid"].number
+                        aggregate.highAsk = aggr["maxAsk"].number
+                        aggregate.lowAsk = aggr["minAsk"].number
+                        aggregate.openAsk = aggr["inAsk"].number
+                        aggregate.closeAsk = aggr["outAsk"].number
+                        
+                        self.baseTimes.append(self.dateFormatter.date(from: aggr["baseTime"].string!)!)
+                        self.highBids.append(aggr["maxBid"].double!)
+                        self.lowBids.append(aggr["minBid"].double!)
+                        self.openBids.append(aggr["inBid"].double!)
+                        self.closeBids.append(aggr["outBid"].double!)
+                        
+                        self.aggregates.append(aggregate)
+                    }*/
+                }
+            }
+        } else {
+            print("No access token!")
+        }
+ 
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,30 +95,21 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func setChartData(months: [String]) {
-        var yVals1 : [ChartDataEntry] = [ChartDataEntry]()
-        for i in 0 ..< months.count {
-            yVals1.append(ChartDataEntry(x: Double(i), y: dollars1[i], data: months[i] as AnyObject?))
+    func setChartData(times: [Date]) {
+        var yVals1 : [CandleChartDataEntry] = [CandleChartDataEntry]()
+        for i in 0 ..< times.count {
+            yVals1.append(CandleChartDataEntry(x: Double(times.count-1-i), shadowH: highBids[times.count-1-i], shadowL: lowBids[times.count-1-i], open: openBids[times.count-1-i], close: closeBids[times.count-1-i]))
         }
         
-        let set1: LineChartDataSet = LineChartDataSet(values: yVals1, label: "First Set")
-        set1.axisDependency = .left
-        set1.setColor(UIColor.red.withAlphaComponent(0.5))
-        set1.setCircleColor(UIColor.red)
-        set1.lineWidth = 2.0
-        set1.circleRadius = 6.0
-        set1.fillAlpha = 65 / 255.0
-        set1.fillColor = UIColor.red
-        set1.highlightColor = UIColor.white
-        set1.drawCircleHoleEnabled = true
+        let set1: CandleChartDataSet = CandleChartDataSet(values: yVals1, label: "USD/JPY")
         
-        var dataSets: [LineChartDataSet] = [LineChartDataSet]()
+        var dataSets: [CandleChartDataSet] = [CandleChartDataSet]()
         dataSets.append(set1)
         
-        let data: LineChartData = LineChartData(dataSets: dataSets)
+        let data: CandleChartData = CandleChartData(dataSets: dataSets)
         data.setValueTextColor(UIColor.white)
         
-        self.lineChartView.data = data
+        self.candleStickChartView.data = data
     }
 }
 
