@@ -18,23 +18,53 @@ class ChartViewController: UIViewController, ChartViewDelegate {
     var aggregates:Array<Aggregate> = Array<Aggregate>()
     let dateFormatter = DateFormatter()
     
-    var baseTimes: [Date]!
-    var lowBids: [Double]!
-    var highBids: [Double]!
-    var openBids: [Double]!
-    var closeBids: [Double]!
+    var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-/*
-        getAggregate(currency: "USD/JPY", interval: "60")
         
-        self.candleStickChartView.delegate = self
-        self.candleStickChartView.gridBackgroundColor = UIColor.darkGray
-        self.candleStickChartView.noDataText = "No data provided"
-        setChartData(times: baseTimes)
-*/
+        let notificationCenter = NotificationCenter.default
+        
+        notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didBecomeActive), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil)
+        
+        let notificationName = NSNotification.Name("StopChartTimer")
+        notificationCenter.addObserver(self, selector: #selector(didEnterBackground), name: notificationName, object: nil)
+    }
+    
+    func didEnterBackground() {
+        if self.timer.isValid {
+            self.timer.invalidate()
+        }
+    }
+    
+    func didBecomeActive() {
+        startTimer()
+    }
+    
+    func startTimer() {
+        if timer == nil || !timer.isValid {
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(self.tabBarController?.selectedViewController as Any)
+        
+        if self.tabBarController?.selectedViewController is ChartViewController {
+            startTimer()
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getAggregate(currency: "USD/JPY", interval: "60")
+    }
+    
+    func runTimedCode() {
+        getAggregate(currency: "USD/JPY", interval: "60")
     }
     
     func getAggregate(currency: String, interval: String) {
@@ -46,7 +76,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
             ]
             
             let parameters = [
-                "currency":currency.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!,
+                "currency":currency,
                 "interval":interval
             ]
             
@@ -57,7 +87,7 @@ class ChartViewController: UIViewController, ChartViewDelegate {
                     
                 case .success(let value):
                     let json = JSON(value)
-/*                    self.aggregates.removeAll()
+                    self.aggregates.removeAll()
                                         
                     self.dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
                     for (_, aggr) in json {
@@ -73,15 +103,14 @@ class ChartViewController: UIViewController, ChartViewDelegate {
                         aggregate.lowAsk = aggr["minAsk"].number
                         aggregate.openAsk = aggr["inAsk"].number
                         aggregate.closeAsk = aggr["outAsk"].number
-                        
-                        self.baseTimes.append(self.dateFormatter.date(from: aggr["baseTime"].string!)!)
-                        self.highBids.append(aggr["maxBid"].double!)
-                        self.lowBids.append(aggr["minBid"].double!)
-                        self.openBids.append(aggr["inBid"].double!)
-                        self.closeBids.append(aggr["outBid"].double!)
-                        
+
                         self.aggregates.append(aggregate)
-                    }*/
+                    }
+                    
+                    self.candleStickChartView.delegate = self
+                    self.candleStickChartView.gridBackgroundColor = UIColor.darkGray
+                    self.candleStickChartView.noDataText = "No data provided"
+                    self.setChartData(aggregates: self.aggregates)
                 }
             }
         } else {
@@ -95,10 +124,13 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func setChartData(times: [Date]) {
+    func setChartData(aggregates: [Aggregate]) {
         var yVals1 : [CandleChartDataEntry] = [CandleChartDataEntry]()
-        for i in 0 ..< times.count {
-            yVals1.append(CandleChartDataEntry(x: Double(times.count-1-i), shadowH: highBids[times.count-1-i], shadowL: lowBids[times.count-1-i], open: openBids[times.count-1-i], close: closeBids[times.count-1-i]))
+        
+        var i: Int = 0
+        for aggregate in aggregates {
+            yVals1.append(CandleChartDataEntry(x: Double(i), shadowH: (aggregate.highBid?.doubleValue)!, shadowL: (aggregate.lowBid?.doubleValue)!, open: (aggregate.openBid?.doubleValue)!, close: (aggregate.closeBid?.doubleValue)!))
+            i = i + 1
         }
         
         let set1: CandleChartDataSet = CandleChartDataSet(values: yVals1, label: "USD/JPY")

@@ -34,10 +34,20 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
     var firstDayOfMonth = Date()
     var profitOfWeek: NSNumber = 0.0
     var profitOfMonth: NSNumber = 0.0
-
+    
+    var refreshControl: UIRefreshControl!
+    var notificationCenter = NotificationCenter.default
+    let notificationName = NSNotification.Name("StopChartTimer")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: UIControlEvents.valueChanged)
+        transactionTableView.addSubview(refreshControl)
+        
         numberFormatter.numberStyle = .decimal
         
         transactionTableView.delegate = self
@@ -53,6 +63,18 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
         
         currentCurrency = currencyPairs[0]
         currentInterval = intervals[3]
+        //getTransactions(currency: currentCurrency, interval: currentInterval)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        notificationCenter.post(name: notificationName, object: nil)
+
+        getTransactions(currency: currentCurrency, interval: currentInterval)
+    }
+    
+    func refresh(sender:AnyObject) {
         getTransactions(currency: currentCurrency, interval: currentInterval)
     }
     
@@ -119,6 +141,7 @@ class TradeGuideViewController: UIViewController, UIPickerViewDelegate, UITableV
                     
                     self.profitOfWeekLabel.text = String((self.profitOfWeek.floatValue*10).rounded()/10)
                     self.profitOfMonthLabel.text = String((self.profitOfMonth.floatValue*10).rounded()/10)
+                    self.refreshControl.endRefreshing()
                     self.transactionTableView.reloadData()
                 }
             }

@@ -1,5 +1,5 @@
 //
-//  aggregate.swift
+//  Aggregate.swift
 //  FxMidas
 //
 //  Created by 고복경 on 2016. 12. 2..
